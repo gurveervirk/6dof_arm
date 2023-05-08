@@ -1,0 +1,324 @@
+<?xml version="1.0"?>
+<!-- created with Phobos 1.0.1 "Capricious Choutengan" -->
+  <robot name="robo_arm">
+
+    <link name="Arm">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.1"/>
+        <inertia ixx="0.05138" ixy="0" ixz="0" iyy="0.07741" iyz="0" izz="0.05138"/>
+      </inertial>
+      <visual name="Robo_Arm_mesh">
+        <origin xyz="0 0 0" rpy="0 0.7854 0"/>
+        <geometry>
+          <mesh filename="package://arm_desc/meshes/dae/6-DOF Robot Mechanical Arm Kits v19 (1).005.dae" scale="1.0 1.0 1.0"/>
+        </geometry>
+      </visual>
+      <collision name="Robo_Arm_mesh">
+        <origin xyz="-0.01794 0.03784 -0.03618" rpy="0 1.5708 0"/>
+        <geometry>
+          <box size="0.54395 1.2334 2.85496"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="arm_1_motor">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.1"/>
+        <inertia ixx="0.00044" ixy="0" ixz="0" iyy="0.00074" iyz="0" izz="0.00044"/>
+      </inertial>
+      <visual name="Motor_3">
+        <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+        <geometry>
+          <mesh filename="package://arm_desc/meshes/dae/6-DOF Robot Mechanical Arm Kits v19 (1).003.dae" scale="1.0 1.0 1.0"/>
+        </geometry>
+      </visual>
+      <collision name="Motor_3">
+        <origin xyz="0 -6e-05 0.01712" rpy="3.14159 0 0"/>
+        <geometry>
+          <cylinder radius="0.21715" length="0.16644"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="arm_2_motor">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.1"/>
+        <inertia ixx="0.00044" ixy="0" ixz="0" iyy="0.00074" iyz="0" izz="0.00044"/>
+      </inertial>
+      <visual name="Motor_4">
+        <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+        <geometry>
+          <mesh filename="package://arm_desc/meshes/dae/6-DOF Robot Mechanical Arm Kits v19 (1).004.dae" scale="1.0 1.0 1.0"/>
+        </geometry>
+      </visual>
+      <collision name="Motor_4">
+        <origin xyz="0 -6e-05 0.01712" rpy="3.14159 0 0"/>
+        <geometry>
+          <cylinder radius="0.21715" length="0.16653"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="back">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.1"/>
+        <inertia ixx="0.01393" ixy="0" ixz="0" iyy="0.06387" iyz="0" izz="0.07119"/>
+      </inertial>
+      <visual name="Back">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://arm_desc/meshes/dae/6-DOF Robot Mechanical Arm Kits v19 (1).006.dae" scale="1.0 1.0 1.0"/>
+        </geometry>
+      </visual>
+      <collision name="Back">
+        <origin xyz="0.03169 0.01865 -0.01747" rpy="0 0 0"/>
+        <geometry>
+          <box size="2.69593 1.12917 0.62973"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="base_plat_motor">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.1"/>
+        <inertia ixx="0.00051" ixy="0" ixz="0" iyy="0.00051" iyz="0" izz="0.00082"/>
+      </inertial>
+      <visual name="Motor_1">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://arm_desc/meshes/dae/6-DOF Robot Mechanical Arm Kits v19 (1).001.dae" scale="1.0 1.0 1.0"/>
+        </geometry>
+      </visual>
+      <collision name="Motor_1">
+        <origin xyz="0 -7e-05 -0.0165" rpy="0 0 0"/>
+        <geometry>
+          <cylinder radius="0.21715" length="0.13589"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="gripper">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.1"/>
+        <inertia ixx="0.03169" ixy="0.00025" ixz="0.00755" iyy="0.02453" iyz="-0.00471" izz="0.02375"/>
+      </inertial>
+      <visual name="Gripper">
+        <origin xyz="0 0 0" rpy="0 0.7854 0"/>
+        <geometry>
+          <mesh filename="package://arm_desc/meshes/dae/6-DOF Robot Mechanical Arm Kits v19 (1).009.dae" scale="1.0 1.0 1.0"/>
+        </geometry>
+      </visual>
+      <collision name="Gripper.000">
+        <origin xyz="0 0 0" rpy="0 0.7854 0"/>
+        <geometry>
+          <mesh filename="package://arm_desc/meshes/dae/6-DOF Robot Mechanical Arm Kits v19 (1).010.dae" scale="1.0 1.0 1.0"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="gripper_motor">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.1"/>
+        <inertia ixx="0.00062" ixy="0" ixz="0" iyy="0.00046" iyz="-0.00016" izz="0.00062"/>
+      </inertial>
+      <visual name="Motor_6">
+        <origin xyz="0 0 0" rpy="0 0.7854 0"/>
+        <geometry>
+          <mesh filename="package://arm_desc/meshes/dae/6-DOF Robot Mechanical Arm Kits v19 (1).007.dae" scale="1.0 1.0 1.0"/>
+        </geometry>
+      </visual>
+      <collision name="Motor_6">
+        <origin xyz="-6e-05 0 0.02681" rpy="0 0 0"/>
+        <geometry>
+          <cylinder radius="0.15355" length="0.20245"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="hand">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.1"/>
+        <inertia ixx="0.02008" ixy="-9e-05" ixz="-9e-05" iyy="0.0147" iyz="-0.00597" izz="0.02006"/>
+      </inertial>
+      <visual name="Hand">
+        <origin xyz="0 0 0" rpy="0 0.7854 0"/>
+        <geometry>
+          <mesh filename="package://arm_desc/meshes/dae/6-DOF Robot Mechanical Arm Kits v19 (1).012.dae" scale="1.0 1.0 1.0"/>
+        </geometry>
+      </visual>
+      <collision name="Hand">
+        <origin xyz="0.25343 0.02847 -0.00192" rpy="0 0 0"/>
+        <geometry>
+          <box size="1.63209 1.2334 0.52921"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="plat_arm_motor">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.1"/>
+        <inertia ixx="0.00044" ixy="0" ixz="0" iyy="0.00044" iyz="0" izz="0.00074"/>
+      </inertial>
+      <visual name="Motor_2">
+        <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+        <geometry>
+          <mesh filename="package://arm_desc/meshes/dae/6-DOF Robot Mechanical Arm Kits v19 (1).002.dae" scale="1.0 1.0 1.0"/>
+        </geometry>
+      </visual>
+      <collision name="Motor_2">
+        <origin xyz="2e-05 -6e-05 0.01771" rpy="3.14159 0 0"/>
+        <geometry>
+          <cylinder radius="0.21715" length="0.15802"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="platform">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.1"/>
+        <inertia ixx="0.00805" ixy="2e-05" ixz="-0.00024" iyy="0.00832" iyz="0.00011" izz="0.01272"/>
+      </inertial>
+      <visual name="Platform">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://arm_desc/meshes/dae/6-DOF Robot Mechanical Arm Kits v19 (1).011.dae" scale="1.0 1.0 1.0"/>
+        </geometry>
+      </visual>
+      <collision name="Platform">
+        <origin xyz="0.01216 -0.03453 0.01668" rpy="0 0 0"/>
+        <geometry>
+          <box size="1.25946 1.05968 0.62973"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="root">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.1"/>
+        <inertia ixx="0.05513" ixy="0" ixz="0" iyy="0.05572" iyz="0" izz="0.06425"/>
+      </inertial>
+      <visual name="Base">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://arm_desc/meshes/dae/6-DOF Robot Mechanical Arm Kits v19 (1).008.dae" scale="1.0 1.0 1.0"/>
+        </geometry>
+      </visual>
+      <collision name="Base.000">
+        <origin xyz="0 -0.01373 0.00582" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://arm_desc/meshes/dae/6-DOF Robot Mechanical Arm Kits v19 (1).000.dae" scale="1.0 1.0 1.0"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="wrist">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.1"/>
+        <inertia ixx="0.00059" ixy="0" ixz="0" iyy="0.00044" iyz="-0.00015" izz="0.00059"/>
+      </inertial>
+      <visual name="Motor_5">
+        <origin xyz="0 0 0" rpy="0 -0.7854 0"/>
+        <geometry>
+          <mesh filename="package://arm_desc/meshes/dae/6-DOF Robot Mechanical Arm Kits v19 (1).013.dae" scale="1.0 1.0 1.0"/>
+        </geometry>
+      </visual>
+      <collision name="Motor_5">
+        <origin xyz="6e-05 2e-05 -0.02841" rpy="0 0 0"/>
+        <geometry>
+          <cylinder radius="0.15355" length="0.17554"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="Arm" type="fixed">
+      <origin xyz="0.79324 -0.84445 0.46365" rpy="1.5708 0 -0.7854"/>
+      <parent link="plat_arm_motor"/>
+      <child link="Arm"/>
+    </joint>
+
+    <joint name="arm_1_motor" type="revolute">
+      <origin xyz="1.12203 -0.46375 -0.03621" rpy="-1.5708 0.7854 0"/>
+      <parent link="Arm"/>
+      <child link="arm_1_motor"/>
+      <axis xyz="0 0 1.0"/>
+      <limit lower="-2.35619" upper="2.35619" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="arm_2_motor" type="revolute">
+      <origin xyz="-0.90914 -0.53505 0.01504" rpy="-1.5708 0 0"/>
+      <parent link="back"/>
+      <child link="arm_2_motor"/>
+      <axis xyz="0 0 1.0"/>
+      <limit lower="-2.35619" upper="2.35619" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="back" type="fixed">
+      <origin xyz="-0.52734 0.01504 0.53505" rpy="1.5708 0 0"/>
+      <parent link="arm_1_motor"/>
+      <child link="back"/>
+    </joint>
+
+    <joint name="base_plat_motor" type="revolute">
+      <origin xyz="-0.02656 -0.01366 0.94791" rpy="0 0 0"/>
+      <parent link="root"/>
+      <child link="base_plat_motor"/>
+      <axis xyz="0 0 1.0"/>
+      <limit lower="-2.35619" upper="2.35619" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="gripper" type="fixed">
+      <origin xyz="0.17155 0.25631 -0.85661" rpy="0 -1.5708 0"/>
+      <parent link="wrist"/>
+      <child link="gripper"/>
+    </joint>
+
+    <joint name="gripper_motor" type="revolute">
+      <origin xyz="0.20504 0.0412 0.19897" rpy="0 0 0"/>
+      <parent link="gripper"/>
+      <child link="gripper_motor"/>
+      <axis xyz="0 0 1.0"/>
+      <limit lower="-2.35619" upper="2.35619" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="hand" type="fixed">
+      <origin xyz="-0.60071 0.59794 0.47312" rpy="1.5708 0 -0.7854"/>
+      <parent link="arm_2_motor"/>
+      <child link="hand"/>
+    </joint>
+
+    <joint name="plat_arm_motor" type="revolute">
+      <origin xyz="-0.21044 -0.53602 0.04919" rpy="-1.5708 0 0"/>
+      <parent link="platform"/>
+      <child link="plat_arm_motor"/>
+      <axis xyz="0 0 1.0"/>
+      <limit lower="-2.35619" upper="2.35619" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="platform" type="fixed">
+      <origin xyz="-0.01216 -0.19137 0.3414" rpy="0 0 0"/>
+      <parent link="base_plat_motor"/>
+      <child link="platform"/>
+    </joint>
+
+    <joint name="wrist" type="revolute">
+      <origin xyz="-0.62445 -0.20282 -0.00186" rpy="0 1.5708 0"/>
+      <parent link="hand"/>
+      <child link="wrist"/>
+      <axis xyz="0 0 1.0"/>
+      <limit lower="-2.35619" upper="2.35619" effort="0" velocity="0"/>
+    </joint>
+
+  </robot>
+

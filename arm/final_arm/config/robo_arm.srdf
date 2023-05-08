@@ -1,0 +1,110 @@
+<?xml version="1.0" ?>
+<!--This does not replace URDF, and is not an extension of URDF.
+    This is a format for representing semantic information about the robot structure.
+    A URDF file must exist for this robot as well, where the joints and the links that are referenced are defined
+-->
+<robot name="robo_arm">
+    <!--GROUPS: Representation of a set of joints and links. This can be useful for specifying DOF to plan for, defining arms, end effectors, etc-->
+    <!--LINKS: When a link is specified, the parent joint of that link (if it exists) is automatically included-->
+    <!--JOINTS: When a joint is specified, the child link of that joint (which will always exist) is automatically included-->
+    <!--CHAINS: When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
+    <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
+    <group name="arm">
+        <link name="root" />
+        <link name="platform" />
+        <link name="Arm" />
+        <link name="back" />
+        <link name="hand" />
+        <joint name="base_plat_motor" />
+        <joint name="plat_arm_motor" />
+        <joint name="arm_1_motor" />
+        <joint name="arm_2_motor" />
+        <joint name="wrist" />
+    </group>
+    <group name="gripper">
+        <link name="gripper" />
+        <joint name="gripper_motor" />
+    </group>
+    <!--GROUP STATES: Purpose: Define a named state for a particular group, in terms of joint values. This is useful to define states like 'folded arms'-->
+    <group_state name="picked" group="arm">
+        <joint name="arm_1_motor" value="0.7218" />
+        <joint name="arm_2_motor" value="0" />
+        <joint name="base_plat_motor" value="0" />
+        <joint name="plat_arm_motor" value="0.0737" />
+        <joint name="wrist" value="0" />
+    </group_state>
+    <group_state name="mission" group="arm">
+        <joint name="arm_1_motor" value="0.8193" />
+        <joint name="arm_2_motor" value="0" />
+        <joint name="base_plat_motor" value="0" />
+        <joint name="plat_arm_motor" value="-1.2627" />
+        <joint name="wrist" value="0" />
+    </group_state>
+    <group_state name="gripped" group="gripper">
+        <joint name="gripper_motor" value="1.097" />
+    </group_state>
+    <group_state name="drop" group="arm">
+        <joint name="arm_1_motor" value="1.229" />
+        <joint name="arm_2_motor" value="0" />
+        <joint name="base_plat_motor" value="3.1972" />
+        <joint name="plat_arm_motor" value="-1.523" />
+        <joint name="wrist" value="0" />
+    </group_state>
+    <group_state name="dropit" group="gripper">
+        <joint name="gripper_motor" value="0" />
+    </group_state>
+    <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
+    <end_effector name="gripper" parent_link="wrist" group="gripper" />
+    <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
+    <disable_collisions link1="Arm" link2="arm_1_motor" reason="Adjacent" />
+    <disable_collisions link1="Arm" link2="arm_2_motor" reason="Never" />
+    <disable_collisions link1="Arm" link2="back" reason="Default" />
+    <disable_collisions link1="Arm" link2="base_plat_motor" reason="Default" />
+    <disable_collisions link1="Arm" link2="plat_arm_motor" reason="Adjacent" />
+    <disable_collisions link1="Arm" link2="platform" reason="Default" />
+    <disable_collisions link1="arm_1_motor" link2="arm_2_motor" reason="Never" />
+    <disable_collisions link1="arm_1_motor" link2="back" reason="Adjacent" />
+    <disable_collisions link1="arm_1_motor" link2="base_plat_motor" reason="Never" />
+    <disable_collisions link1="arm_1_motor" link2="gripper" reason="Never" />
+    <disable_collisions link1="arm_1_motor" link2="gripper_motor" reason="Never" />
+    <disable_collisions link1="arm_1_motor" link2="hand" reason="Never" />
+    <disable_collisions link1="arm_1_motor" link2="plat_arm_motor" reason="Never" />
+    <disable_collisions link1="arm_1_motor" link2="platform" reason="Never" />
+    <disable_collisions link1="arm_1_motor" link2="root" reason="Never" />
+    <disable_collisions link1="arm_1_motor" link2="wrist" reason="Never" />
+    <disable_collisions link1="arm_2_motor" link2="back" reason="Adjacent" />
+    <disable_collisions link1="arm_2_motor" link2="base_plat_motor" reason="Never" />
+    <disable_collisions link1="arm_2_motor" link2="gripper" reason="Never" />
+    <disable_collisions link1="arm_2_motor" link2="gripper_motor" reason="Never" />
+    <disable_collisions link1="arm_2_motor" link2="hand" reason="Adjacent" />
+    <disable_collisions link1="arm_2_motor" link2="plat_arm_motor" reason="Never" />
+    <disable_collisions link1="arm_2_motor" link2="platform" reason="Never" />
+    <disable_collisions link1="arm_2_motor" link2="root" reason="Never" />
+    <disable_collisions link1="arm_2_motor" link2="wrist" reason="Never" />
+    <disable_collisions link1="back" link2="base_plat_motor" reason="Never" />
+    <disable_collisions link1="back" link2="gripper_motor" reason="Never" />
+    <disable_collisions link1="back" link2="hand" reason="Default" />
+    <disable_collisions link1="back" link2="plat_arm_motor" reason="Never" />
+    <disable_collisions link1="back" link2="platform" reason="Never" />
+    <disable_collisions link1="back" link2="wrist" reason="Never" />
+    <disable_collisions link1="base_plat_motor" link2="gripper_motor" reason="Never" />
+    <disable_collisions link1="base_plat_motor" link2="hand" reason="Never" />
+    <disable_collisions link1="base_plat_motor" link2="plat_arm_motor" reason="Never" />
+    <disable_collisions link1="base_plat_motor" link2="platform" reason="Adjacent" />
+    <disable_collisions link1="base_plat_motor" link2="root" reason="Adjacent" />
+    <disable_collisions link1="base_plat_motor" link2="wrist" reason="Never" />
+    <disable_collisions link1="gripper" link2="gripper_motor" reason="Adjacent" />
+    <disable_collisions link1="gripper" link2="hand" reason="Never" />
+    <disable_collisions link1="gripper" link2="wrist" reason="Adjacent" />
+    <disable_collisions link1="gripper_motor" link2="hand" reason="Never" />
+    <disable_collisions link1="gripper_motor" link2="plat_arm_motor" reason="Never" />
+    <disable_collisions link1="gripper_motor" link2="wrist" reason="Never" />
+    <disable_collisions link1="hand" link2="plat_arm_motor" reason="Never" />
+    <disable_collisions link1="hand" link2="platform" reason="Never" />
+    <disable_collisions link1="hand" link2="wrist" reason="Adjacent" />
+    <disable_collisions link1="plat_arm_motor" link2="platform" reason="Adjacent" />
+    <disable_collisions link1="plat_arm_motor" link2="root" reason="Never" />
+    <disable_collisions link1="plat_arm_motor" link2="wrist" reason="Never" />
+    <disable_collisions link1="platform" link2="root" reason="Never" />
+    <disable_collisions link1="platform" link2="wrist" reason="Never" />
+</robot>

@@ -1,0 +1,15 @@
+<launch>
+	<!-- When calling the launch file you can provide the .urdf file that you want to look at as a parameter.
+	Example: roslaunch your_pkg_name inspect_urdf.launch model:='$(find your_pkg_name)/path/to/your_urdf.urdf' -->
+	
+	<arg name="model" default="package://arm_desc/urdf/robo_arm.urdf"/>
+	<param name="robot_description" textfile="$(find arm_desc)/urdf/robo_arm.urdf"/>
+	<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+		<param name="use_gui" value="TRUE"/>
+	</node>
+
+	<node pkg="robot_state_publisher" name="robot_state_publisher" type="robot_state_publisher" />
+
+	<node name="rviz" pkg="rviz" type="rviz" />
+
+</launch>

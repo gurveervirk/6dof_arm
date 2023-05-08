@@ -1,0 +1,84 @@
+# Simulation settings for using moveit_sim_controllers
+moveit_sim_hw_interface:
+  joint_model_group: arm
+  joint_model_group_pose: picked
+# Settings for ros_control_boilerplate control loop
+generic_hw_control_loop:
+  loop_hz: 300
+  cycle_time_error_threshold: 0.01
+# Settings for ros_control hardware interface
+hardware_interface:
+  joints:
+    - base_plat_motor
+    - plat_arm_motor
+    - arm_1_motor
+    - arm_2_motor
+    - wrist
+    - gripper_motor
+  sim_control_mode: 1  # 0: position, 1: velocity
+# Publish all joint states
+# Creates the /joint_states topic necessary in ROS
+joint_state_controller:
+  type: joint_state_controller/JointStateController
+  publish_rate: 50
+controller_list:
+  - name: arm_controller
+    action_ns: follow_joint_trajectory
+    default: True
+    type: FollowJointTrajectory
+    joints:
+      - base_plat_motor
+      - plat_arm_motor
+      - arm_1_motor
+      - arm_2_motor
+      - wrist
+  - name: gripper_controller
+    action_ns: follow_joint_trajectory
+    default: True
+    type: FollowJointTrajectory
+    joints:
+      gripper_motor
+arm_controller:
+  type: position_controllers/JointTrajectoryController
+  joints:
+    - base_plat_motor
+    - plat_arm_motor
+    - arm_1_motor
+    - arm_2_motor
+    - wrist
+  gains:
+    base_plat_motor:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+    plat_arm_motor:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+    arm_1_motor:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+    arm_2_motor:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+    wrist:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+gripper_controller:
+  type: effort_controllers/JointTrajectoryController
+  joints:
+    gripper_motor
+  gains:
+    gripper_motor:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
